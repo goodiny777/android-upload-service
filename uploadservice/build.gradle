@@ -56,6 +56,15 @@ android {
     lintOptions {
         warning 'InvalidPackage'
     }
+
+    publishing {
+        publishing {
+            singleVariant("release") {
+                withSourcesJar()
+                withJavadocJar()
+            }
+        }
+    }
 }
 
 dependencies {
@@ -87,18 +96,20 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 
-afterEvaluate {
-    publishing {
+ publishing {
         publications {
             release(MavenPublication) {
                 from components.release
 
                 groupId = group
                 artifactId = 'uploadservice'
-                version = '1.0.0'
+                version = '1.0.1'
+
+                afterEvaluate {
+                    from components.release
+                }
             }
         }
     }
-}
 
 apply from: 'https://raw.githubusercontent.com/sky-uk/gradle-maven-plugin/master/gradle-mavenizer.gradle'

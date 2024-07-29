@@ -98,8 +98,6 @@ dependencies {
  publishing {
         publications {
             release(MavenPublication) {
-                from components.release
-
                 groupId = group
                 artifactId = 'uploadservice'
                 version = '1.0.1'

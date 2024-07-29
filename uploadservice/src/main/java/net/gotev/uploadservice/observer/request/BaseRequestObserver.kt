@@ -2,6 +2,7 @@ package net.gotev.uploadservice.observer.request
 
 import android.content.BroadcastReceiver
 import android.content.Context
+import android.os.Build
 import android.content.Intent
 import net.gotev.uploadservice.UploadServiceConfig
 import net.gotev.uploadservice.data.BroadcastData

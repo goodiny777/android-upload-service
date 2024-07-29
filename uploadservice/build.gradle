@@ -3,6 +3,8 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-parcelize'
 apply plugin: "org.jlleitschuh.gradle.ktlint"
 apply plugin: 'kotlin-kapt'
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'maven-publish'
 
 // start - do not modify this if your project is on github
 project.ext {
@@ -17,8 +19,8 @@ project.ext {
 }
 // end - do not modify this if your project is on github
 
-group = library_project_group
-version = library_version
+group = "com.github.goodiny777"
+version = "1.0.0"
 
 android {
     namespace "net.gotev.uploadservice"
@@ -83,6 +85,20 @@ dependencies {
     kapt "androidx.lifecycle:lifecycle-compiler:$androidx_lifecycle_version"
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+
+                groupId = group
+                artifactId = 'uploadservice'
+                version = '1.0.0'
+            }
+        }
+    }
 }
 
 apply from: 'https://raw.githubusercontent.com/sky-uk/gradle-maven-plugin/master/gradle-mavenizer.gradle'
